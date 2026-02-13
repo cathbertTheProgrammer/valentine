@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #ffecd2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts animation */
+        .heart-bg {
+            position: fixed;
+            top: -10%;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-bg span {
+            position: absolute;
+            bottom: -50px;
+            font-size: 30px;
+            animation: rise 15s infinite;
+            opacity: 0;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 110%;
+                opacity: 0;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        .heart-bg span:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+        .heart-bg span:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 14s; }
+        .heart-bg span:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 13s; }
+        .heart-bg span:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 15s; }
+        .heart-bg span:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 11s; }
+        .heart-bg span:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 16s; }
+        .heart-bg span:nth-child(7) { left: 15%; animation-delay: 6s; animation-duration: 13s; }
+        .heart-bg span:nth-child(8) { left: 60%; animation-delay: 7s; animation-duration: 14s; }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(255, 105, 135, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff1744;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 23, 68, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .video-container {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #444;
+            margin: 30px 0;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 2em;
+            color: #ff1744;
+            font-weight: bold;
+            margin: 40px 0 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .button-container {
+            margin-top: 40px;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #ff1744 0%, #ff6090 100%);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.4);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.6);
+        }
+
+        .yes-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .roses {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1em;
+                padding: 0 10px;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .yes-btn {
+                padding: 15px 40px;
+                font-size: 1.2em;
+            }
+        }
+
+        .response {
+            display: none;
+            margin-top: 30px;
+            font-size: 2em;
+            color: #ff1744;
+            animation: celebrate 0.5s ease-in;
+        }
+
+        @keyframes celebrate {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-bg">
+        <span>💕</span>
+        <span>💖</span>
+        <span>💗</span>
+        <span>💘</span>
+        <span>💝</span>
+        <span>💕</span>
+        <span>💖</span>
+        <span>💗</span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>My Love Grace💕</h1>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="vi.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="message">
+            <p>From the moment you walked into my life, my heart found its home 🏡💓. Your smile lights up my world 🌍✨, your love brings me peace 🕊️, and every moment with you feels like magic 💫.</p>
+            
+            <p>This Valentine's Day 🌹❤️, I don't want to imagine it without you by my side. I want to celebrate us, our love, our laughter, and all the beautiful moments we're still going to create 💞🥰.</p>
+        </div>
+
+        <div class="roses">🌹🌹🌹</div>
+
+        <div class="question">
+            So tell me, my heart 💘… will you be my Valentine? 💌🌹
+        </div>
+
+        <div class="button-container">
+            <button class="yes-btn" onclick="showResponse()">Yes! 💕</button>
+        </div>
+
+        <div class="response" id="response">
+            You've made me the happiest! 🎉💖✨
+        </div>
+    </div>
+
+    <script>
+        function showResponse() {
+            document.getElementById('response').style.display = 'block';
+            
+            // Create confetti effect
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.textContent = ['💕', '💖', '💗', '💘', '💝', '🌹', '❤️'][Math.floor(Math.random() * 7)];
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-50px';
+            confetti.style.fontSize = Math.random() * 20 + 20 + 'px';
+            confetti.style.zIndex = '1000';
+            confetti.style.pointerEvents = 'none';
+            document.body.appendChild(confetti);
+
+            const animation = confetti.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 2000 + 3000,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            });
+
+            animation.onfinish = () => confetti.remove();
+        }
+    </script>
+</body>
+</html>
